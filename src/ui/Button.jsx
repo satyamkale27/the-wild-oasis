@@ -50,18 +50,17 @@ const variations = {
 
 const Button = styled.button`
   // it is real components and has to start with capital letters //
-  font-size: 1.4rem;
-  padding: 1.2rem 1.6rem;
-  font-weight: 500;
+
   border: none;
   border-radius: var(--border-radius-sm);
-  background-color: var(--color-brand-600); // color from our GlobalStyles //
-  color: var(--color-brand-50);
   box-shadow: var(--shadow-sm);
-  cursor: pointer;
-  &:hover {
-    background-color: var(--color-brand-700);
-  }
+  ${(props) => sizes[props.size]}
+  ${(props) => variations[props.variation]}
 `;
+
+Button.defaultProps = {
+  variation: "primary",
+  size: "medium",
+};
 
 export default Button;

@@ -3,26 +3,44 @@ import GlobalStyles from "./styles/GlobalStyles";
 import Button from "./ui/Button";
 import Input from "./ui/Input";
 
-const H1 = styled.h1`
-  font-size: 30px;
-  font-weight: 600;
-  background-color: yellow;
-`;
+import Heading from "./ui/Heading";
+import Row from "./ui/Row";
 
 const StyledApp = styled.div`
-  background-color: orangered;
   padding: 20px;
 `;
 
 function App() {
+  // is as prop is paddes to component as h3 then component will be h3, as prop is inbuild prop for component //
   return (
     <>
       <GlobalStyles />
       <StyledApp>
-        <H1>The wild Oasis</H1>
-        <Button onClick={() => alert("Check in")}>Check in</Button>
-        <Input type="number" placeholder="Number of guests" />
-        <Input type="number" placeholder="Number of guests" />
+        <Row>
+          <Row type="horizontal">
+            <Heading as="h1">The wild Oasis</Heading>
+            <div>
+              <Heading as="h2">check in and out</Heading>
+
+              <Button onClick={() => alert("Check in")}>Check in</Button>
+              <Button
+                variation="secondary"
+                size="small"
+                onClick={() => alert("Check out")}
+              >
+                Check out
+              </Button>
+            </div>
+          </Row>
+          <Row>
+            <Heading as="h3">Forms</Heading>
+
+            <form>
+              <Input type="number" placeholder="Number of guests" />
+              <Input type="number" placeholder="Number of guests" />
+            </form>
+          </Row>
+        </Row>
       </StyledApp>
     </>
   );
