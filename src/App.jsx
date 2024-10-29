@@ -1,47 +1,34 @@
-import styled from "styled-components";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import GlobalStyles from "./styles/GlobalStyles";
-import Button from "./ui/Button";
-import Input from "./ui/Input";
-
-import Heading from "./ui/Heading";
-import Row from "./ui/Row";
-
-const StyledApp = styled.div`
-  padding: 20px;
-`;
-
+import Dashboard from "./pages/Dashboard";
+import Cabins from "./pages/Cabins";
+import Users from "./pages/Users";
+import Settings from "./pages/Settings";
+import Account from "./pages/Account";
+import Bookings from "./pages/Bookings";
+import Login from "./pages/Login";
+import PageNotFound from "./pages/PageNotFound";
+import AppLayout from "./ui/AppLayout";
 function App() {
-  // is as prop is paddes to component as h3 then component will be h3, as prop is inbuild prop for component //
   return (
     <>
       <GlobalStyles />
-      <StyledApp>
-        <Row>
-          <Row type="horizontal">
-            <Heading as="h1">The wild Oasis</Heading>
-            <div>
-              <Heading as="h2">check in and out</Heading>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route index element={<Navigate replace to="dashboard" />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="cabins" element={<Cabins />} />
+            <Route path="bookings" element={<Bookings />} />
+            <Route path="users" element={<Users />} />
+            <Route path="seetings" element={<Settings />} />
+            <Route path="account" element={<Account />} />
+          </Route>
 
-              <Button onClick={() => alert("Check in")}>Check in</Button>
-              <Button
-                variation="secondary"
-                size="small"
-                onClick={() => alert("Check out")}
-              >
-                Check out
-              </Button>
-            </div>
-          </Row>
-          <Row>
-            <Heading as="h3">Forms</Heading>
-
-            <form>
-              <Input type="number" placeholder="Number of guests" />
-              <Input type="number" placeholder="Number of guests" />
-            </form>
-          </Row>
-        </Row>
-      </StyledApp>
+          <Route path="login" element={<Login />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
